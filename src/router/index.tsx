@@ -1,18 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
-import { DropDownPage, SelectPage } from "../page";
+import { Main } from "@/page";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <></>,
-  },
-  {
-    path: "/select",
-    element: <SelectPage />,
-  },
-  {
-    path: "/dropdown",
-    element: <DropDownPage />,
+    element: <Main />,
   },
 ]);
 

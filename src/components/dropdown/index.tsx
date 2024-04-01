@@ -1,91 +1,65 @@
-import "./dropdown.css";
-
-import { Dispatch, SetStateAction, createContext, useContext, useEffect, useState } from "react";
-
-interface Props {
-  label: string;
-  value: string;
-  onChange: Dispatch<SetStateAction<string>>;
-  children: JSX.Element[];
-}
-
-interface ContextIF {
-  value: string;
-  onChange: Dispatch<SetStateAction<string>>;
-  open: boolean;
-  setOpen: Dispatch<SetStateAction<boolean>>;
-}
+import { createContext, useContext, useState } from "react";
+import { Props, ContextIF, TriggerIF, MenuIF, ItemIF } from "@/types/components/dropdown";
 
 const Context = createContext<ContextIF>({
+  title: "",
   value: "",
-  onChange: () => {},
   open: false,
+  toggle: () => {},
   setOpen: () => {},
+  onChange: () => {},
 });
 
-const DropDown = ({ label, value, onChange, children }: Props) => {
+const DropDown = ({ title, value, children, onChange }: Props) => {
   const [open, setOpen] = useState(false);
-  const providerValue = { value, onChange, open, setOpen };
+  const toggle = () => setOpen((prevOpen) => !prevOpen);
+  const context = { title, value, open, toggle, setOpen, onChange };
 
   return (
-    <Context.Provider value={providerValue}>
-      <div>
-        <div className="title-area">
-          <h3 className="title">{label}</h3>
-        </div>
-        <div id="dropdown-wrapper">{children}</div>
-      </div>
+    <Context.Provider value={context}>
+      <div className="dropdown">{children}</div>
     </Context.Provider>
   );
 };
 
-const Trigger = ({ as }: { as: JSX.Element }) => {
-  const { open, setOpen } = useContext(Context);
+const Title = () => {
+  const { title } = useContext(Context);
+  return <h2 className="dropdown-title">{title}</h2>;
+};
 
-  const mouseout = (e: globalThis.MouseEvent) => {
-    e.stopPropagation();
-    const target = e.target as HTMLDivElement;
-    if (target.className !== "global-layout") return;
-    setOpen(false);
-  };
-
-  useEffect(() => {
-    document.addEventListener("click", mouseout);
-    return () => document.addEventListener("click", mouseout);
-  }, []);
+const Trigger = ({ as }: TriggerIF) => {
+  const { toggle } = useContext(Context);
 
   return (
-    <div id="trigger" onClick={() => setOpen(!open)}>
+    <div className="dropdown-trigger" onClick={toggle}>
       {as}
     </div>
   );
 };
 
-const Menu = ({ children }: { children: JSX.Element[] }) => {
+const Menu = ({ children }: MenuIF) => {
   const { open } = useContext(Context);
-
-  return (
-    <ul id="dropdown" className={open ? "" : "disabled"}>
-      {children}
-    </ul>
-  );
+  return <div className={`dropdown-menu ${open ? "open" : ""}`}>{children}</div>;
 };
 
-const Item = ({ children }: { children: string }) => {
-  const { onChange } = useContext(Context);
+const Item = ({ children }: ItemIF) => {
+  const { onChange, toggle } = useContext(Context);
 
-  const onSelect = (value: string) => {
-    onChange(value);
+  const onSelect = () => {
+    onChange(children);
+    toggle();
   };
 
   return (
-    <li className="item" onClick={() => onSelect(children)}>
+    <div className="dropdown-item" onClick={onSelect}>
       {children}
-    </li>
+    </div>
   );
 };
 
+DropDown.Title = Title;
 DropDown.Trigger = Trigger;
 DropDown.Menu = Menu;
 DropDown.Item = Item;
+
 export default DropDown;
