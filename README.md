@@ -5,5 +5,5 @@
 고객의 니즈를 위해 고민해야 하는 첫 단추  
 언제 어떻게 변경이 필요할 지 모르기 때문에, 확장 가능성이 많은 컴포넌트 설계가 중요.
 
-# Compount Component Pattern
+# Compound Component Pattern
 - 하나의 컴포넌트를 여러개의 집합체로 분리한 다음, 각 분리된 컴포넌트를 UI에서 조합하여 사용하는 패턴.
