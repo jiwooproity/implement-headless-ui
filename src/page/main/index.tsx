@@ -25,7 +25,7 @@ const Main = () => {
           <DropDown.Trigger as={<input value={select} readOnly />} />
           <DropDown.Menu>
             {options.map((option) => (
-              <DropDown.Item>{option}</DropDown.Item>
+              <DropDown.Item key={option}>{option}</DropDown.Item>
             ))}
           </DropDown.Menu>
         </DropDown>
@@ -36,7 +36,7 @@ const Main = () => {
           <DropDown.Trigger as={<input value={dupliSelect} readOnly />} />
           <DropDown.Menu>
             {options.map((option) => (
-              <DropDown.Item>{option}</DropDown.Item>
+              <DropDown.Item key={option}>{option}</DropDown.Item>
             ))}
           </DropDown.Menu>
         </DropDown>
