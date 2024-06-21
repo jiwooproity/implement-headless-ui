@@ -1,11 +1,11 @@
-import "./app.css";
-
 import { RouterProvider } from "react-router-dom";
-import router from "./router";
+
+import "@/shared/styles/global.css";
+import router from "@/shared/router";
 
 const App = () => {
   return (
-    <div className="global-layout">
+    <div className="main">
       <RouterProvider router={router} />
     </div>
   );

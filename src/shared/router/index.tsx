@@ -1,10 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Main } from "@/page";
+
+import { Dropdown } from "@/shared/components";
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Main />,
+    path: "/dropdown",
+    element: <Dropdown />,
   },
 ]);
 
