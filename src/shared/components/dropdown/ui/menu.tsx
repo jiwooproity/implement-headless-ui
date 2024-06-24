@@ -19,7 +19,7 @@ const Menu = ({ isOpen, items, selectItem, keyboardEv }: MenuProps) => {
         <div
           key={item.id}
           className="dropdown-item"
-          tabIndex={item.id}
+          tabIndex={0}
           onClick={() => selectItem(item.label)}
           onKeyDown={keyboardEv}
         >

@@ -4,7 +4,7 @@ import { Dropdown } from "@/shared/components";
 
 const router = createBrowserRouter([
   {
-    path: "/dropdown",
+    path: "/",
     element: <Dropdown />,
   },
 ]);
