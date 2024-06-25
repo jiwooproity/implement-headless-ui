@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import { Dropdown, Checkbox, Search } from "@/shared/components";
+import { User } from "@/widgets";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
   {
     path: "/search",
     element: <Search />,
+  },
+  {
+    path: "/user-skeleton",
+    element: <User />,
   },
 ]);
 

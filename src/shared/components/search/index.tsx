@@ -10,7 +10,7 @@ const Search = () => {
   };
 
   const onSubmit = () => {
-    console.log(searchRef.current);
+    alert(searchRef.current);
   };
 
   return (
