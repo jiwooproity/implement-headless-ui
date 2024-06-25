@@ -1,5 +1,6 @@
-# Keep up with Toss
-확장 가능한 컴포넌트를 만들어 보자
+# Implement Headless UI
+
+Headless UI 컴포넌트에 대해 알아보고, 확장 가능한 컴포넌트를 고민해 보자.
 
 ## UI 라이브러리의 한계
 
